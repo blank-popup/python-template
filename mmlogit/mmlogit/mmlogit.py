@@ -1,6 +1,7 @@
 #-*- coding: utf-8 -*-
 import logging
 import logging.handlers
+import os
 import sys
 '''
 General logging configuration
@@ -23,12 +24,13 @@ def set_root_logger(filepath=None, level=logging.DEBUG):
     '''
     root = logging.getLogger()
     root.setLevel(level)
-    formatter = logging.Formatter(u'[%(asctime)s] [%(name)s] [%(levelname)s] - %(message)s (%(pathname)s, %(lineno)s)')
+    formatter = logging.Formatter(u'[%(asctime)s] [%(name)s] [%(levelname)s] (%(pathname)s, %(lineno)s) - %(message)s')
     streamHandler = logging.StreamHandler()
     streamHandler.setFormatter(formatter)
     root.addHandler(streamHandler)
     # If filepath is not None, Use file handler
     if filepath is not None:
+        os.makedirs(os.path.dirname(os.path.abspath(filepath)), exist_ok=True)
         fileHandler = logging.handlers.RotatingFileHandler(
             filepath, mode='a',
             maxBytes=1024*1024*1024,
