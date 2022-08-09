@@ -1,8 +1,8 @@
 #-*- coding: utf-8 -*-
-from mmsingelton.mmsingleton import MMSingleton
+import mmsingelton.mmsingleton
 
 
-class UniqueClass(MMSingleton):
+class UniqueClass(mmsingelton.mmsingleton.Singleton):
     def __init__(self, *args, **kwargs):
         super(UniqueClass, self).__init__()
 

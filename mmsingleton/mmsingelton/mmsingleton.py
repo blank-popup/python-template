@@ -3,7 +3,7 @@
 Singleton class
 '''
 
-class MMSingleton(object):
+class Singleton(object):
     '''
     Base class of singleton
     '''
