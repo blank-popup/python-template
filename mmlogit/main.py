@@ -1,5 +1,6 @@
 #-*- coding: utf-8 -*-
 import logging
+import logging.handlers
 
 from mmlogit import mmlogit
 import otherfile
@@ -10,7 +11,8 @@ logger = logging.getLogger(__name__)
 
 if __name__ == '__main__':
     # Add handlers(consol, file) to root logger
-    mmlogit.set_root_logger(f'test_logit.log')
+    if len(logging.getLogger().handlers) < 1:
+        mmlogit.set_root_logger(f'test_logit.log')
 
     # Use logger like followings
     logger.critical(f'main critical')
